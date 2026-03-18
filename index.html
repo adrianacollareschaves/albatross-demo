@@ -161,9 +161,10 @@ body{background:var(--dark);font-family:'Outfit',sans-serif;height:100vh;overflo
 @media (max-width: 400px) {
   .slide-title { font-size: 1.1rem !important; }
   .slide-desc { font-size: .75rem !important; }
-  .phone {
-    height: calc(100vw - 24px) !important;
+.phone {
+    height: calc(130vw - 24px) !important;
   }
+.csv-phone { height: auto !important; min-height: unset !important; }
 }
 </style>
 </head>
@@ -489,7 +490,7 @@ slides.forEach((s,i)=>{
       screenHTML = '<div class="scroll-box" id="sb'+i+'"><div class="scroll-inner" id="si'+i+'"><img src="' + IMGS[s.img] + '" alt="" style="width:100%;display:block;">' + extraImg2 + '</div></div>';
     }  }
 
-  const phone = `<div class="mockup-wrap"><div class="phone">${s.mobile!==false?'<div class="phone-notch"></div>':''}${screenHTML}</div></div>`;
+const phone = `<div class="mockup-wrap"><div class="phone${s.isCsv?' csv-phone':''}">${s.mobile!==false?'<div class="phone-notch"></div>':''}${screenHTML}</div></div>`;
 
   const brideTag = s.bride ? `<div class="bride-badge"><span class="dot-pulse"></span>Visibilidade exclusiva da noiva</div>` : '';
 
