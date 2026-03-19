@@ -589,6 +589,15 @@ cur=idx(idx){
 
   document.getElementById('cnt').textContent=`${idx+1} / ${slides.length}`;
   cur=idx;
+  // Voice narration
+if(window.speechSynthesis){
+  window.speechSynthesis.cancel();
+  const utter = new SpeechSynthesisUtterance(slides[idx].title + '. ' + slides[idx].desc);
+  utter.lang = 'pt-BR';
+  utter.rate = 0.9;
+  window.speechSynthesis.speak(utter);
+}
+
   // scroll anim
   if(playing) startScrollAnim(idx);
 
@@ -601,6 +610,7 @@ cur=idx(idx){
     },DURATION);
   }
 }
+
 function next(){ if(cur<slides.length-1) showSlide(cur+1); }
 function prev(){ if(cur>0) showSlide(cur-1); }
 function goTo(i){ showSlide(i); }
