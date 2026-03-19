@@ -544,7 +544,7 @@ function startScrollAnim(idx){
   }, 1000);
 }
 
-function showSlide(idx){
+cur=idx(idx){
   const els = document.querySelectorAll('.slide');
   const pips = getPips();
 
@@ -589,6 +589,14 @@ function showSlide(idx){
 
   document.getElementById('cnt').textContent=`${idx+1} / ${slides.length}`;
   cur=idx;
+  // Voice narration
+if(window.speechSynthesis){
+  window.speechSynthesis.cancel();
+  const utter = new SpeechSynthesisUtterance(slides[idx].title + '. ' + slides[idx].desc);
+  utter.lang = 'pt-BR';
+  utter.rate = 0.9;
+  window.speechSynthesis.speak(utter);
+}
 
   // scroll anim
   if(playing) startScrollAnim(idx);
