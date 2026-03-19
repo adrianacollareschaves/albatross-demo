@@ -642,11 +642,10 @@ function speakSlide(idx){
     const utter = new SpeechSynthesisUtterance(slides[idx].title + '. ' + slides[idx].desc);
     utter.lang = 'pt-BR';
     utter.rate = 1.1;
-    utter.pitch = 1;
     const voices = window.speechSynthesis.getVoices();
-    const femaleVoice = voices.find(v => v.lang === 'pt-BR' && v.name.toLowerCase().includes('female'))
-      || voices.find(v => v.lang === 'pt-BR')
-      || voices.find(v => v.lang.startsWith('pt'));
+    const femaleVoice = voices.find(v => v.name.includes('Luciana'))
+      || voices.find(v => v.name.includes('Ana'))
+      || voices.find(v => v.lang === 'pt-BR');
     if(femaleVoice) utter.voice = femaleVoice;
     window.speechSynthesis.speak(utter);
   }, 300);
