@@ -177,6 +177,7 @@ body{background:var(--dark);font-family:'Outfit',sans-serif;height:100vh;overflo
   <div class="ctrls">
     <span class="cnt" id="cnt">1 / 14</span>
     <button class="btn" id="playbtn" onclick="togglePlay()">⏸ Pausar</button>
+    <button class="btn" id="voicebtn" onclick="toggleVoice()">🔊</button>
     <button class="btn" onclick="restart()">↺ Reiniciar</button>
   </div>
 </div>
@@ -627,7 +628,21 @@ function togglePlay(){
     pip.classList.remove('active');
   }
 }
-
+let voiceOn = false;
+function toggleVoice(){
+  voiceOn = !voiceOn;
+  document.getElementById('voicebtn').textContent = voiceOn ? '🔇' : '🔊';
+  if(voiceOn) speakSlide(cur);
+  else window.speechSynthesis.cancel();
+}
+function speakSlide(idx){
+  if(!voiceOn) return;
+  window.speechSynthesis.cancel();
+  const utter = new SpeechSynthesisUtterance(slides[idx].title + '. ' + slides[idx].desc);
+  utter.lang = 'pt-BR';
+  utter.rate = 0.9;
+  window.speechSynthesis.speak(utter);
+}
 function restart(){
   playing=true;
   document.getElementById('playbtn').textContent='⏸ Pausar';
