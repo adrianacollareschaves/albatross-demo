@@ -592,7 +592,7 @@ function showSlide(idx){
 
   document.getElementById('cnt').textContent=`${idx+1} / ${slides.length}`;
   cur=idx;
-
+speakSlide(idx);
   // scroll anim
   if(playing) startScrollAnim(idx);
 
