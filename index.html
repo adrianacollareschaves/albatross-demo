@@ -328,7 +328,7 @@ const slides = [
     tag:"NOIVA ✦",
     title:"Visibilidade total para a noiva",
     desc:"A noiva recebe um arquivo atualizado com todos os convidados: hotel, quarto, check-in, check-out e status.",
-    img:"csv", mobile:false, scroll:false, isCsv:true,
+    img:"csv", mobile:true, scroll:false, isCsv:true,
     feature:"Painel da noiva",
     bride:true,
   },
@@ -490,7 +490,7 @@ slides.forEach((s,i)=>{
       screenHTML = '<div class="scroll-box" id="sb'+i+'"><div class="scroll-inner" id="si'+i+'"><img src="' + IMGS[s.img] + '" alt="" style="width:100%;display:block;">' + extraImg2 + '</div></div>';
     }  }
 
-const phone = `<div class="mockup-wrap"><div class="phone${s.isCsv?' csv-phone':''}">${s.mobile!==false?'<div class="phone-notch"></div>':''}${screenHTML}</div></div>`;
+const phone = `<div class="mockup-wrap"><div class="phone">${s.mobile!==false?'<div class="phone-notch"></div>':''}${screenHTML}</div></div>`;
 
   const brideTag = s.bride ? `<div class="bride-badge"><span class="dot-pulse"></span>Visibilidade exclusiva da noiva</div>` : '';
 
