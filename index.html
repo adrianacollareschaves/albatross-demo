@@ -634,17 +634,34 @@ function toggleVoice(){
   document.getElementById('voicebtn').textContent = voiceOn ? '🔇' : '🔊';
   if(voiceOn) speakSlide(cur);
   else window.speechSynthesis.cancel();
-}
+const ROTEIRO = [
+  "O convidado recebe um link personalizado no WhatsApp.",
+  "Ao clicar, já está dentro — sem app, sem cadastro.",
+  "Vê toda a programação do casamento: eventos, datas e horários.",
+  "Escolhe entre os hotéis recomendados pela noiva.",
+  "Com todos os detalhes disponíveis antes de reservar.",
+  "Escolhe o quarto, vê as fotos e parcela em até seis vezes em reais.",
+  "Galeria completa do quarto, sem precisar sair da plataforma.",
+  "Seleciona as datas com disponibilidade em tempo real.",
+  "Revisa tudo antes de confirmar — transparente, sem surpresas.",
+  "Reserva feita! Agora segue para as atividades.",
+  "Atividades recomendadas pelos noivos, alinhadas ao casamento.",
+  "Reserva com um clique — e pode dividir com amigos.",
+  "Transfer, cabeleireiro e mais — tudo reservável na plataforma.",
+  "Paga tudo parcelado, sem taxas extras e sem surpresas na fatura.",
+  "E conta com o suporte da equipe Albatross no WhatsApp.",
+  "A noiva recebe a lista completa dos convidados — hotel, quarto, check-in e check-out — facilitando toda a logística do casamento."
+];
 function speakSlide(idx){
   if(!voiceOn) return;
   window.speechSynthesis.cancel();
   setTimeout(()=>{
-    const utter = new SpeechSynthesisUtterance(slides[idx].title + '. ' + slides[idx].desc);
+    const text = ROTEIRO[idx] || slides[idx].title;
+    const utter = new SpeechSynthesisUtterance(text);
     utter.lang = 'pt-BR';
-    utter.rate = 1.1;
+    utter.rate = 1.0;
     const voices = window.speechSynthesis.getVoices();
     const femaleVoice = voices.find(v => v.name.includes('Luciana'))
-      || voices.find(v => v.name.includes('Ana'))
       || voices.find(v => v.lang === 'pt-BR');
     if(femaleVoice) utter.voice = femaleVoice;
     window.speechSynthesis.speak(utter);
