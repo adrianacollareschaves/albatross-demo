@@ -105,7 +105,6 @@ body{background:var(--dark);font-family:'Outfit',sans-serif;height:100vh;overflo
   .cnt { display: none; }
   .btn { padding: 5px 10px; font-size: .7rem; }
  .csv-wrap { max-height: 50vh !important; }
-  .csv-phone { height: auto !important; min-height: unset !important; }
 
 
  .slide {
@@ -490,7 +489,9 @@ slides.forEach((s,i)=>{
       const extraImg2 = s.dualImg ? '<img src="' + IMGS[s.dualImg] + '" alt="" style="width:100%;display:block;">' : '';
       screenHTML = '<div class="scroll-box" id="sb'+i+'"><div class="scroll-inner" id="si'+i+'"><img src="' + IMGS[s.img] + '" alt="" style="width:100%;display:block;">' + extraImg2 + '</div></div>';
     }  }
+
 const phone = `<div class="mockup-wrap"><div class="phone${s.isCsv?' csv-phone':''}">${s.mobile!==false?'<div class="phone-notch"></div>':''}${screenHTML}</div></div>`;
+
   const brideTag = s.bride ? `<div class="bride-badge"><span class="dot-pulse"></span>Visibilidade exclusiva da noiva</div>` : '';
 
   const info = `<div class="info">
@@ -544,7 +545,7 @@ function startScrollAnim(idx){
   }, 1000);
 }
 
-cur=idx(idx){
+function showSlide(idx){
   const els = document.querySelectorAll('.slide');
   const pips = getPips();
 
@@ -589,14 +590,6 @@ cur=idx(idx){
 
   document.getElementById('cnt').textContent=`${idx+1} / ${slides.length}`;
   cur=idx;
-  // Voice narration
-if(window.speechSynthesis){
-  window.speechSynthesis.cancel();
-  const utter = new SpeechSynthesisUtterance(slides[idx].title + '. ' + slides[idx].desc);
-  utter.lang = 'pt-BR';
-  utter.rate = 0.9;
-  window.speechSynthesis.speak(utter);
-}
 
   // scroll anim
   if(playing) startScrollAnim(idx);
