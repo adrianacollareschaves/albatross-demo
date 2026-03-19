@@ -613,7 +613,6 @@ if(window.speechSynthesis){
 
 function next(){ if(cur<slides.length-1) showSlide(cur+1); window.speechSynthesis && window.speechSynthesis.resume(); }
 function prev(){ if(cur>0) showSlide(cur-1); window.speechSynthesis && window.speechSynthesis.resume(); }
-function prev(){ if(cur>0) showSlide(cur-1); }
 function goTo(i){ showSlide(i); }
 
 function togglePlay(){
