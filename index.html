@@ -638,10 +638,18 @@ function toggleVoice(){
 function speakSlide(idx){
   if(!voiceOn) return;
   window.speechSynthesis.cancel();
-  const utter = new SpeechSynthesisUtterance(slides[idx].title + '. ' + slides[idx].desc);
-  utter.lang = 'pt-BR';
-  utter.rate = 0.9;
-  window.speechSynthesis.speak(utter);
+  setTimeout(()=>{
+    const utter = new SpeechSynthesisUtterance(slides[idx].title + '. ' + slides[idx].desc);
+    utter.lang = 'pt-BR';
+    utter.rate = 1.1;
+    utter.pitch = 1;
+    const voices = window.speechSynthesis.getVoices();
+    const femaleVoice = voices.find(v => v.lang === 'pt-BR' && v.name.toLowerCase().includes('female'))
+      || voices.find(v => v.lang === 'pt-BR')
+      || voices.find(v => v.lang.startsWith('pt'));
+    if(femaleVoice) utter.voice = femaleVoice;
+    window.speechSynthesis.speak(utter);
+  }, 300);
 }
 function restart(){
   playing=true;
