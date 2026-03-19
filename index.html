@@ -490,8 +490,7 @@ slides.forEach((s,i)=>{
       const extraImg2 = s.dualImg ? '<img src="' + IMGS[s.dualImg] + '" alt="" style="width:100%;display:block;">' : '';
       screenHTML = '<div class="scroll-box" id="sb'+i+'"><div class="scroll-inner" id="si'+i+'"><img src="' + IMGS[s.img] + '" alt="" style="width:100%;display:block;">' + extraImg2 + '</div></div>';
     }  }
-
-const phone = s.isCsv ? `<div class="mockup-wrap" style="display:none;"></div>` : `<div class="mockup-wrap"><div class="phone">${s.mobile!==false?'<div class="phone-notch"></div>':''}${screenHTML}</div></div>`; style="${s.isCsv?'height:auto;min-height:unset;':''}">${s.mobile!==false?'<div class="phone-notch"></div>':''}${screenHTML}</div></div>`;
+const phone = s.isCsv ? `<div class="mockup-wrap" style="display:none;"></div>` : `<div class="mockup-wrap"><div class="phone">${s.mobile!==false?'<div class="phone-notch"></div>':''}${screenHTML}</div></div>`;
 
   const brideTag = s.bride ? `<div class="bride-badge"><span class="dot-pulse"></span>Visibilidade exclusiva da noiva</div>` : '';
 
